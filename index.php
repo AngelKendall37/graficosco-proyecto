@@ -5,7 +5,7 @@
     $correo = $_SESSION['cliente'];
 
     if(!isset($_SESSION['cliente'])){
-        header('location: login.php');
+        header('location: slider.php');
     
     }
  ?>

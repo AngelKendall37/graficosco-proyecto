@@ -247,6 +247,7 @@
   <script>
     function limpiarTabla() {
         document.getElementById("tabla-resultados").innerHTML = "";
+        document.getElementById("tabla-productos").innerHTML = "";
     }
 
     document.querySelector('form').addEventListener('submit', function(e) {
@@ -366,8 +367,25 @@
         $porcentaje = 0;
         }
     }
+    // Consulta SQL para obtener los productos que coinciden con el sector socioeconómico seleccionado
+        $sql2 = "SELECT * FROM productos WHERE SECTOR_SOCIOECONOMICO='$SECTOR_SOCIOECONOMICO'";
+        //Ejecutar la consulta y almacenar el resultado en una variable
+        $result2 = $conn->query($sql2);
+
+        // Verificar si la consulta tuvo éxito
+        if ($result2 === false) {
+        echo "Error al ejecutar la consulta: " . $conn->error;
+        exit();
+        }
+
+        // Obtener el número de filas en el resultado de la consulta
+        // Obtener el número de filas en el resultado de la consulta
+        $num_rows2 = $result2->num_rows;
+
+        // Cerrar la conexión a la base de datos
+        $conn->close();;
     
-    // Mostrar el resultado en una tabla HTML
+        // Mostrar el resultado en una tabla HTML
     echo "<h3>Resultado</h3>";
     echo "<table id='tabla-resultados'>";
     echo "<tr><th>CIUDAD</th><th>SECTOR COMERCIAL</th><th>N Tiendas</th><th>Recomendacion</th></tr>";
@@ -382,7 +400,24 @@
       
       echo "</td></tr>";
       echo "</table>";
+    
+    // Mostrar los productos que coinciden con el sector socioeconómico en una segunda tabla HTML
+    echo "<h3>Productos mas vendidos en Colombia</h3>";
+    echo "<table id='tabla-productos'>";
+    echo "<tr><th>SECTOR COMERCIAL</th><th>NOMBRE</th><th>PORCENTAJE DE VENTAS</th></tr>";
+    if ($result2 !== null && $result2->num_rows > 0) {
+    while($row2 = $result2->fetch_assoc()) {
+        $porcentaje = $row2["cantidad_vendida"] * 10; // Multiplicar por 10 para obtener el porcentaje
+        echo "<tr><td>" . $row2["SECTOR_SOCIOECONOMICO"] . "</td><td>" . $row2["nombre"] . "</td><td>";
+        echo "<div class='progress' style='border: 2px solid #000080'><div class='progress-bar bg-success' role='progressbar' style='width:$porcentaje%'>$porcentaje%</div></div>";
+        echo "</td></tr>";
     }
+    } else {
+        
+    echo "<tr><td colspan='2'>No se encontraron productos que coincidan con el sector socioeconómico seleccionado.</td></tr>";
+    }
+    echo "</table>";
+}
   ?>
   <button class="btn btn-primary" type="button" onclick="limpiarTabla()">Limpiar</button>
   </div>

@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    
+}
+body{
+    height: 100vh;
+    background-color: #000;
+    background-image: url('https://news.tradimo.com/wp-content/uploads/2019/11/technicalanalysis.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+}
+a:hover{
+    color: #afafaf;
+}
+header{
+    position: relative;
+    padding: 0 2rem;
+}
+.navbarslider{
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.navbarslider .logo a{
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+.navbarslider .links {
+    display: flex;
+    gap: 2rem;
+}
+section#hero{
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+#hero h1{
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    
+}
+.action_btn{
+    background-color: rgb(131, 139, 59);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+}
+@media (max-width: 287px){
+    .navbarslider .links,
+    li, a{
+        display: none;
+    }
+}

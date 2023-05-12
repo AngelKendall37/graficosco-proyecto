@@ -5,7 +5,7 @@
 
     if(!isset($_SESSION['cliente'])){
         header('location: login.php');
-    
+
     }
  ?>
 <!DOCTYPE html>
@@ -274,7 +274,7 @@
                 <div class="modal-body">Seleccione "Cerrar sesion" a continuación si está listo para finalizar su sesión actual.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="login.html">Cerrar sesion</a>
+                    <a class="btn btn-primary" href="login.php">Cerrar sesion</a>
                 </div>
             </div>
         </div>
